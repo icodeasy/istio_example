@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: svc2.virtualservice
+spec:
+  hosts:
+    - service2  # 个人理解，istio会根据这个列表直接去接管对应k8s service对象的流量，apply 之后立即生效
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: service2

@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: service2
   namespace: default
+  labels:
+    version: v1
 spec:
   selector:
     app: service2
