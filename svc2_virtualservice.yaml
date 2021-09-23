@@ -4,11 +4,11 @@ metadata:
   name: svc2.virtualservice
 spec:
   hosts:
-    - service2  # 个人理解，istio会根据这个列表直接去接管对应k8s service对象的流量，apply 之后立即生效
+    - service2.default.svc.cluster.local  # 个人理解，istio会根据这个列表直接去接管对应k8s service对象的流量，apply 之后立即生效
   http:
   - match:
     - uri:
         prefix: /
     route:
-    - destination:
-        host: service2
+      - destination:
+          host: service2

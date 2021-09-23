@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: service2-deploy
+  name: service2v2-deploy
   namespace: default
 spec:
   selector:                     # 定义 Deployment 如何查找要管理的 Pods
     matchLabels:
       app: service2
-      version: v1
+      version: v2
   template:
     metadata:
       labels:
         app: service2
-        version: v1
+        version: v2
     spec:
 
       containers:
@@ -30,7 +30,7 @@ spec:
       volumes:
       - name: nginx-index-file
         configMap:
-          name: service2-configmap
+          name: service2v2-configmap
       - name: nginx-config
         configMap:
-          name: service2-configmap
+          name: service2v2-configmap
