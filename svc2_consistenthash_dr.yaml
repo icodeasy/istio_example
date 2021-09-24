@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: svc2-consistenthead-test
+spec:
+  host: service2
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        httpHeaderName: "uid" # the hash will be calculated based on my-header value that will be passed by curl
+  subsets:
+    - name: all # custom name
+      labels:
+        app: service2 # app label we used in our deployment
