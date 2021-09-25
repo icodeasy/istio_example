@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: consistenthash-by-sourceip
+spec:
+  host: service2
+  trafficPolicy:
+    loadBalancer:
+      consistentHash:
+        useSourceIp: true 
+  subsets:
+    - name: all # custom name
+      labels:
+        app: service2 # app label we used in our deployment

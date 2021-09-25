@@ -32,6 +32,13 @@ data:
             proxy_http_version 1.1; # Istio 使用 Envoy 作为数据面转发 HTTP 请求，而 Envoy 默认要求使用 HTTP/1.1 或 HTTP/2，当客户端使用 HTTP/1.0 时就会返回 426 Upgrade Required。
           }
 
+          location /svc2_change_source_ip {
+            proxy_bind $remote_addr transparent;
+            proxy_pass http://service2.default.svc.cluster.local/;
+            # note this slash  ---------------------------------^ or will forward path /svc2 again
+            proxy_http_version 1.1; # Istio 使用 Envoy 作为数据面转发 HTTP 请求，而 Envoy 默认要求使用 HTTP/1.1 或 HTTP/2，当客户端使用 HTTP/1.0 时就会返回 426 Upgrade Required。
+          }
+
           location / {
             root   /usr/share/nginx/html; #Change this line
             index  index.html index.htm;
