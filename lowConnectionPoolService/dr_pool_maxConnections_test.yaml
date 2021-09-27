@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: lowconnectionpool-dr
+spec:
+  host: lowconnectionpool-service
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 10
